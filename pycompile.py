@@ -76,8 +76,9 @@ def build_solution( builder, solution, configure, platform ):
                 if( len(listError) == 0 ):
                         break;
                 listError = ["build solution %s, error count = %d" % ( solution, len(listError)), 
-                                "-"*80] + listError
+                                "-"*80] + listError + ["solution %s" % solution ]
                 output_err_info(listError)
+
                 raw_input("input ENTER to build again...")
 
 def call_shellcommand( command ):
@@ -111,6 +112,12 @@ def copy_output_direction( src, dest, ignorefile = []):
         复制输出目录。从src到dest，dest目录不能为根目录，不能已经存在。ignorefile为忽略项
         '''
         copytree( src, dest, ignore=_ignore_patterns(ignorefile))
+
+def copy_output_file( src, dest ):
+        '''
+        拷贝文件
+        '''
+        copy2(src, dest)
 
         
 def get_svn_rev( path ):
