@@ -2,10 +2,14 @@
 import distutils.msvc9compiler
 import re,subprocess
 import fnmatch
+import os
 from ctypes import *
 from shutil import *
 
 msvc = ""
+
+""" git路径 """
+gitpath = "C:\\Program Files (x86)\\Git\\bin\\git"
 
 def _do_buildcommand( a ):
         p = subprocess.Popen( a, stdout=subprocess.PIPE)
@@ -109,9 +113,31 @@ def copy_output_direction( src, dest, ignorefile = []):
         copytree( src, dest, ignore=_ignore_patterns(ignorefile))
 
         
+def get_svn_rev( path ):
+        '''
+        获得SVN的版本号 
+        '''
+        os.chdir(path)
+        a = [gitpath, "svn", "log", "-1" ]
+        p = subprocess.Popen( a, stdout=subprocess.PIPE)
+        #p.stdin.writelines("\n\n")
+        #p.stdin.flush()
+        rev ="" 
+        while True:
+                l = p.stdout.readline()
+                if l=="":
+                        break
+                k = l.split("|")
+                if len(k)>1:
+                        rev=k[0].strip()
+                        print k
+                print l
+        p.wait()
+        return rev.strip("r")
+        
 
 
 
 
-#a = msvc.find_exe("devenv.exe")
-#print a
+
+
