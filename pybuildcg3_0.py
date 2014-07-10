@@ -7,7 +7,8 @@ rev.strip()
 if len(rev)<6:
         rev="0"*(6-len(rev))+rev
 
-destpath = u"D:\\字幕版本发布\\".encode("mbcs")+"V3.0.0_Build"+rev+".CGLive_Alpha\\"
+revname = "V3.0.0_Build"+rev+".CGLive_Alpha"
+destpath = u"D:\\字幕版本发布\\".encode("mbcs")+revname+"\\"
 
 builder = pycompile.init_vcbuild( 10.0 )
 os.chdir(basepath)
@@ -54,6 +55,7 @@ _*.*
 *.vs?scc
 *.lib
 *.map
+*.dmp
 """
 ignore = [l.strip() for l in a.split("\n" )]
 
@@ -64,5 +66,5 @@ pycompile.copy_output_direction(u"D:\\字幕版本发布\\profile".encode('mbcs'
 pycompile.copy_output_file(u"D:\\字幕版本发布\\ServerConfig.ini".encode('mbcs'), destpath+"ServerConfig.ini" )
 
 
-
+pycompile.git_commit(destpath, revname  )
 

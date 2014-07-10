@@ -2,6 +2,8 @@
 import os
 import pycompile
 
+
+
 #Alpha Beta RC
 testname = "Alpha"      
 basepath = "m:\\"
@@ -10,7 +12,7 @@ rev.strip()
 if len(rev)<6:
         rev="0"*(6-len(rev))+rev
 
-revname = "V3.0.0_Build"+rev+".DUARIC30_"+testname;
+revname = "V3.0.0_Build"+rev+".DUARIC31_"+testname
 destpath = u"D:\\字幕版本发布\\".encode("mbcs")+revname+"\\"
 
 builder = pycompile.init_vcbuild( 10.0 )
@@ -68,9 +70,7 @@ pycompile.call_shellcommand("makerelease.bat")
 pycompile.copy_output_direction(u"D:\\字幕版本发布\\profile".encode('mbcs'), destpath+"profile" )
 #pycompile.copy_output_file(u"D:\\字幕版本发布\\ServerConfig.ini".encode('mbcs'), destpath+"ServerConfig.ini" )
 
-pycompile.git_commit(destpath, revname  )
-
-
+pycompile.git_commit(destpath, revname )
 
 
 

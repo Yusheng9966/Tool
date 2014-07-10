@@ -142,6 +142,20 @@ def get_svn_rev( path ):
         p.wait()
         return rev.strip("r")
         
+def git_commit( path, loginfo ):
+        '''
+        将目录提交到git库
+        '''
+        os.chdir(path)
+        a = [gitpath, "add", "."]
+        p = subprocess.Popen( a )
+        p.wait()
+        a = [gitpath, "commit", "-m", '%s'%loginfo]
+        p = subprocess.Popen( a )
+        p.wait()
+
+
+
 
 
 
