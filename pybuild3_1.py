@@ -12,7 +12,7 @@ rev.strip()
 if len(rev)<6:
         rev="0"*(6-len(rev))+rev
 
-revname = "V3.0.0_Build"+rev+".DUARIC31_"+testname
+revname = "V3.1.0_Build"+rev+".DUARIC31_"+testname
 destpath = u"D:\\字幕版本发布\\".encode("mbcs")+revname+"\\"
 
 builder = pycompile.init_vcbuild( 10.0 )
