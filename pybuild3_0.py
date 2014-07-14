@@ -16,51 +16,18 @@ destpath = u"D:\\字幕版本发布\\".encode("mbcs")+revname+"\\"
 builder = pycompile.init_vcbuild( 10.0 )
 os.chdir(basepath)
 
+pycompile.delete_allfiles( r"bin64\plug_in\PlayEffects\\")
+
 pycompile.build_solution( builder, r"Src\xcgMTCGPro2010.sln", "Debug", "x64", retry_count = 10 )
-pycompile.build_solution( builder, r"SrcPlug_In\XCGPlugInSolution\XCGPlugInSolution2010.sln", "Debug", "x64", retry_count = 10 )
+pycompile.build_solution( builder, r"SrcPlug_In\XCGPlugInSolution\XCGPlugInSolution2010.sln", "Debug", "x64", retry_count = 10,  rebuild = True )
 
 
 pycompile.build_solution( builder, r"Src\xcgMTCGPro2010.sln", "Release", "x64", retry_count = 10 )
-pycompile.build_solution( builder, r"SrcPlug_In\XCGPlugInSolution\XCGPlugInSolution2010.sln", "Release", "x64", retry_count = 10 )
+pycompile.build_solution( builder, r"SrcPlug_In\XCGPlugInSolution\XCGPlugInSolution2010.sln", "Release", "x64", retry_count = 10, rebuild = True )
 
 print "build completed!"
 
-a = """ *debug\\
-*release\\
-bin_release\\
-temp\\
-Log\\
-profile
-pdbdata
-*.dsw
-*.ncb
-*.plg
-*.opt
-*.aps
-*.bsc
-*.obj
-*.idb
-*.pdb
-*.pch
-*.res
-*.sbr
-*.hm
-*.clw
-*.scc
-*.stt
-*.tmp
-*.bak
-*.~*
-~*.*
-_*.*
-*.ilk
-*.exp
-*.vs?scc
-*.lib
-*.map
-*.dmp
-"""
-ignore = [l.strip() for l in a.split("\n" )]
+ignore = pycompile.get_ignore_fromfile("ignore.txt")
 
 pycompile.copy_output_direction("bin64", destpath, ignore )
 os.chdir(destpath)

@@ -1,0 +1,40 @@
+登陆
+
+任务
+http://mis.dayang.com/req-web/taskAction!showTaskList.action?taskForm.projectId=114
+
+新建任务 POST
+http://mis.dayang.com/req-web/taskAction!showTaskAdd.action?taskForm.projectId=114
+
+DUARIC 3.0版本
+http://mis.dayang.com/req-web/mileStoneAction!showMileStoneList.action?mileStoneForm.projectId=114&mileStoneForm.revId=404
+DUARIC 3.0新建版本
+http://mis.dayang.com/req-web/versionAction!showVersionAdd.action?versionForm.projectId=114&page=1
+
+POST /req-web/versionAction!addVersion.action HTTP/1.1
+Host: mis.dayang.com
+Connection: keep-alive
+Content-Length: 141
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Origin: http://mis.dayang.com
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Referer: http://mis.dayang.com/req-web/versionAction!showVersionAdd.action?versionForm.projectId=114&page=1
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: zh-CN,zh;q=0.8
+Cookie: JSESSIONID=AE825164292D038EC5FCD13A1C5F5F61.tomcat2; JSESSIONID=3675238C8CD8050F1377F8A656B8E31A.tomcat2
+
+versionForm.projectId=114&versionForm.mileStoneRevId=404&versionForm.buildPackageId=56&versionForm.versionType=Alpha&versionForm.description=
+
+
+Response
+
+HTTP/1.1 302 Moved Temporarily
+Date: Mon, 14 Jul 2014 06:45:47 GMT
+Server: Apache/2.2.11 (Unix) mod_jk2/2.0.4
+Location: http://mis.dayang.com/req-web/mileStoneAction!showMileStoneList.action?mileStoneForm.projectId=114&mileStoneForm.revId=404
+Content-Language: zh-CN
+Content-Length: 0
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+Content-Type: text/plain
