@@ -70,16 +70,20 @@ def output_err_info( errs ):
                 print l 
         windll.Kernel32.SetConsoleTextAttribute(h, 15)
 
-def build_solution( builder, solution, configure, platform ):
-        while True:
+def build_solution( builder, solution, configure, platform, retry_count=1 ):
+        while retry_count:
                 listError = builder( solution, configure,platform)
                 if( len(listError) == 0 ):
                         break;
+
                 listError = ["build solution %s, error count = %d" % ( solution, len(listError)), 
                                 "-"*80] + listError + ["solution %s" % solution ]
                 output_err_info(listError)
 
-                raw_input("input ENTER to build again...")
+                if retry_count == 1:
+                        raw_input("input ENTER to build again...")
+                else:
+                        retry_count = retry_count - 1
 
 def call_shellcommand( command ):
         a = [command]

@@ -13,12 +13,12 @@ destpath = u"D:\\字幕版本发布\\".encode("mbcs")+revname+"\\"
 builder = pycompile.init_vcbuild( 10.0 )
 os.chdir(basepath)
 
-pycompile.build_solution( builder, r"Src\xcgMTCGPro2010.sln", "Debug", "x64" )
-pycompile.build_solution( builder, r"SrcPlug_In\XCGPlugInSolution\XCGPlugInSolution2010.sln", "Debug", "x64" )
+pycompile.build_solution( builder, r"Src\xcgMTCGPro2010.sln", "Debug", "x64", retry_count = 10 )
+pycompile.build_solution( builder, r"SrcPlug_In\XCGPlugInSolution\XCGPlugInSolution2010.sln", "Debug", "x64", retry_count = 10 )
 
 
-pycompile.build_solution( builder, r"Src\xcgMTCGPro2010.sln", "Release", "x64" )
-pycompile.build_solution( builder, r"SrcPlug_In\XCGPlugInSolution\XCGPlugInSolution2010.sln", "Release", "x64" )
+pycompile.build_solution( builder, r"Src\xcgMTCGPro2010.sln", "Release", "x64", retry_count = 10 )
+pycompile.build_solution( builder, r"SrcPlug_In\XCGPlugInSolution\XCGPlugInSolution2010.sln", "Release", "x64", retry_count = 10 )
 
 print "build completed!"
 
