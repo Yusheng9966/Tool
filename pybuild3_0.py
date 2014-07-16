@@ -18,12 +18,14 @@ os.chdir(basepath)
 
 pycompile.delete_allfiles( r"bin64\plug_in\PlayEffects\\")
 
-pycompile.build_solution( builder, r"Src\xcgMTCGPro2010.sln", "Debug", "x64", retry_count = 10 )
-pycompile.build_solution( builder, r"SrcPlug_In\XCGPlugInSolution\XCGPlugInSolution2010.sln", "Debug", "x64", retry_count = 10,  rebuild = True )
+pycompile.build_prj_list( builder, "buildfile.txt", "buildoutput.txt" )
+pycompile.build_prj_list( builder, "buildPlugInfile.txt", "buildPlugInoutput.txt" )
 
+#pycompile.build_solution( builder, r"Src\xcgMTCGPro2010.sln", "Debug", "x64", retry_count = 10 )
+#pycompile.build_solution( builder, r"SrcPlug_In\XCGPlugInSolution\XCGPlugInSolution2010.sln", "Debug", "x64", retry_count = 10,  rebuild = True )
 
-pycompile.build_solution( builder, r"Src\xcgMTCGPro2010.sln", "Release", "x64", retry_count = 10 )
-pycompile.build_solution( builder, r"SrcPlug_In\XCGPlugInSolution\XCGPlugInSolution2010.sln", "Release", "x64", retry_count = 10, rebuild = True )
+#pycompile.build_solution( builder, r"Src\xcgMTCGPro2010.sln", "Release", "x64", retry_count = 10 )
+#pycompile.build_solution( builder, r"SrcPlug_In\XCGPlugInSolution\XCGPlugInSolution2010.sln", "Release", "x64", retry_count = 10, rebuild = True )
 
 print "build completed!"
 
@@ -36,8 +38,4 @@ pycompile.copy_output_direction(u"D:\\字幕版本发布\\profile".encode('mbcs'
 #pycompile.copy_output_file(u"D:\\字幕版本发布\\ServerConfig.ini".encode('mbcs'), destpath+"ServerConfig.ini" )
 
 pycompile.git_commit(destpath, revname  )
-
-
-
-
 
