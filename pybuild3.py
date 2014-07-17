@@ -11,6 +11,8 @@ if package_now:
                 print u"图文发布模式...".encode('mbcs')
         myversion = raw_input(u"输入版本号0 or 1...?".encode('mbcs'))
         print u"版本号为3.%d, 开始编译...".encode('mbcs')%myversion
+else:
+        clear_prj = raw_input(u"是否需要先清理工程(y/n)...?".encode('mbcs')) == 'y'
 
 #Alpha Beta RC
 testname = "Alpha"      
@@ -21,8 +23,8 @@ os.chdir(basepath)
 
 pycompile.delete_allfiles( r"bin64\plug_in\PlayEffects\\")
 
-pycompile.build_prj_list( builder, "buildfile.txt", "buildoutput.txt" )
-pycompile.build_prj_list( builder, "buildPlugInfile.txt", "buildPlugInoutput.txt" )
+pycompile.build_prj_list( builder, "buildfile.txt", "buildoutput.txt", clear = clear_prj )
+pycompile.build_prj_list( builder, "buildPlugInfile.txt", "buildPlugInoutput.txt", clear = clear_prj )
 
 #pycompile.build_solution( builder, r"Src\xcgMTCGPro2010.sln", "Debug", "x64", retry_count = 10 )
 #pycompile.build_solution( builder, r"SrcPlug_In\XCGPlugInSolution\XCGPlugInSolution2010.sln", "Debug", "x64", retry_count = 10 )

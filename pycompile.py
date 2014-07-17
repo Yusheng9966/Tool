@@ -117,15 +117,16 @@ def build_solution( builder, solution, configure, platform, retry_count=1, rebui
                         retry_count = retry_count - 1
 
                         
-def test_build_dependenc_order( builder, prj_info, pretty = "none" ):
+def test_build_dependenc_order( builder, prj_info,  clear = True,pretty = "none" ):
         '''
         测试工程编译的依赖项，输入工程文件名，进行依赖测试，返回能够正确编译的工程顺序
         '''
 
         #所有的工程清理
-        for info in prj_info:
-                name,configure, platform = info
-                builder( name, configure, platform, clear = True )
+        if clear:
+                for info in prj_info:
+                        name,configure, platform = info
+                        builder( name, configure, platform, clear = True )
 
         prj_output = []
         prj_set = set()
@@ -175,7 +176,7 @@ def get_buildproject_fromfile( filename ):
         f.close();
         return prj_info;
                 
-def build_prj_list( builder, prjlistfile, outputlistfile ):
+def build_prj_list( builder, prjlistfile, outputlistfile,  clear = True ):
         '''
         读取prjlistfile中的工程，一行一行的编译，将编译成功的工程顺序输出到outputlistfile
         '''
@@ -183,7 +184,7 @@ def build_prj_list( builder, prjlistfile, outputlistfile ):
         for info in prjinfo:
                 print "%s,%s,%s"%info
 
-        prj, errorprj = test_build_dependenc_order( builder, prjinfo )
+        prj, errorprj = test_build_dependenc_order( builder, prjinfo, clear = clear )
 
         f = open(outputlistfile, "w")
 
@@ -201,7 +202,7 @@ def build_prj_list( builder, prjlistfile, outputlistfile ):
                 if answer != 'y':
                         break;
 
-                prj, errorprj = test_build_dependenc_order( builder, errorprj, "" )
+                prj, errorprj = test_build_dependenc_order( builder, errorprj, clear, "" )
                 for info in prj:
                         name,configure, platform = info
                         print name
